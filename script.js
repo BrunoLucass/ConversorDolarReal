@@ -1,8 +1,28 @@
-let taxaDeConversao = document.getElementById("taxaConversao");
-let inputTaxa = taxaConversao.value;
+buttonRealDol.disabled = true
+buttonDolReal.disabled = true
+
 var dolares = 0
 
+function obterTaxa() {
+  let taxaDeConversao = document.getElementById('taxaConversao').value
+
+  if (taxaDeConversao === '') {
+    alert('Preencha a taxa de conversão para continuar!')
+  }
+  let taxaConfirmada
+  taxaDeConversao = taxaConfirmada
+
+  let buttonDolReal = document.getElementById('buttonDolReal')
+  buttonDolReal.disabled = false
+  let buttonRealDol = document.getElementById('buttonRealDol')
+  buttonRealDol.disabled = false
+
+  let confirmTax = document.getElementById('confirmTax')
+  confirmTax.disabled = true
+}
+
 function conversorRealDolar() {
+  let taxaDeConversao = document.getElementById('taxaConversao').value
   //acessar o que foi digitado
   var reais = document.getElementById('reais').value
 
@@ -10,15 +30,15 @@ function conversorRealDolar() {
   reais = parseFloat(reais)
 
   //converter para dolares
-  dolares = reais / inputTaxa;
+  dolares = reais / taxaDeConversao
+  let outputReal = document.getElementById('outputReal')
 
-  console.log(dolares)
-
-  alert(dolares + ' dolares')
+  outputReal.value = dolares
 }
 
 var reals = 0
 function conversorDolarReal() {
+  let taxaDeConversao = document.getElementById('taxaConversao').value
   //acessar o que foi digitado
   var dolar = document.getElementById('dolar').value
 
@@ -26,19 +46,29 @@ function conversorDolarReal() {
   dolar = parseFloat(dolar)
 
   //converter para dolares
-  reals = dolar / inputTaxa;
-  console.log(reals)
+  reals = dolar * taxaDeConversao
 
-  alert(reals + ' reals')
+  let outputDolar = document.getElementById('outputDolar')
+  outputDolar.value = reals
 }
 
-const obterTaxa = () => {
-  if (inputTaxa === '') {
-    return alert('Preencha a taxa de conversão para continuar!')
-  }
-  taxa = inputTaxa.value
-}
+function limpaInput() {
+  let taxaDeConversao = document.getElementById('taxaConversao')
+  taxaDeConversao.value = ''
+  let dolar = document.getElementById('dolar')
+  dolar.value = ''
+  let reais = document.getElementById('reais')
+  reais.value = ''
+  let outputDolar = document.getElementById('outputDolar')
+  outputDolar.value = ''
+  let outputReal = document.getElementById('outputReal')
+  outputReal.value = ''
 
-const limpaInput = () => {
-  inputTaxa.value = ''
+  let confirmTax = document.getElementById('confirmTax')
+  confirmTax.disabled = false
+
+  let buttonDolReal = document.getElementById('buttonDolReal')
+  buttonDolReal.disabled = true
+  let buttonRealDol = document.getElementById('buttonRealDol')
+  buttonRealDol.disabled = true
 }
